@@ -35,6 +35,11 @@
   to = "/m/index.html"
   status = 200
 
+[[redirects]]
+  from = "/m"
+  to = "/m/index.html"
+  status = 200
+
 # Desktop SPA fallback
 [[redirects]]
   from = "/*"
