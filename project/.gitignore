@@ -26,3 +26,8 @@ dist-ssr
 # Exclude embedded React Native example apps (were previously added as gitlinks)
 mobile/TestApp/
 mobile/mobile-app/
+
+# Environment files (DO NOT COMMIT SECRETS)
+.env
+server/.env
+*.env.local

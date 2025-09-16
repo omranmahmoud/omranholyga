@@ -11,8 +11,11 @@
   NPM_VERSION = "10"
   NPM_FLAGS = "--no-audit --no-fund"
 
-[edge_functions]
-  directory = "edge-functions"
+## Edge Functions configuration
+## Netlify requires [[edge_functions]] array entries. Each object maps a path to a function.
+[[edge_functions]]
+  path = "/*"        # Run for all routes (function itself filters assets & /api)
+  function = "mobile-redirect"
 
 # Environment (optional examples)
 #[[build.environment]]
