@@ -38,8 +38,7 @@
   to = "/index.html"
   status = 200
 
-[[edge_functions]]
-  path = "/*"                  # Run for all requests (mobile redirect logic checks UA & path)
-  function = "mobile-redirect"  # File: edge-functions/mobile-redirect.js
+## Edge function routing moved to per-file export config (edge-functions/mobile-redirect.js)
+## Keeping only the directory declaration above to avoid duplicate key parsing error.
 
 # (Optional) Future: Add function for prefs, A/B, etc.
