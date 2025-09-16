@@ -3,7 +3,7 @@
 
 [build]
   base = "project"          # Change working directory before running command
-  publish = "project/dist"   # Dist output relative to repo root
+  publish = "dist"          # Because base moves us into project/, publish path is relative to that
   command = "npm run build"  # Uses scripts from project/package.json
 
 # Environment (optional examples)
@@ -30,7 +30,8 @@
   to = "/index.html"
   status = 200
 
-[edge_functions]
-  directory = "project/netlify/edge-functions"
+[[edge_functions]]
+  path = "/"                   # Run for all requests (mobile redirect logic checks UA & path)
+  function = "mobile-redirect"  # File: project/netlify/edge-functions/mobile-redirect.js
 
 # (Optional) Future: Add function for prefs, A/B, etc.
