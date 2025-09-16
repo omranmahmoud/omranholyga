@@ -12,8 +12,9 @@ export const getAllHeros = async (req, res) => {
 export const getActiveHero = async (req, res) => {
   try {
     const hero = await Hero.findOne({ isActive: true });
+    // Return 200 with null when there is no active hero instead of 404 so clients can treat it as optional.
     if (!hero) {
-      return res.status(404).json({ message: 'No active hero section found' });
+      return res.status(200).json(null);
     }
     res.json(hero);
   } catch (error) {

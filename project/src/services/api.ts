@@ -92,7 +92,18 @@ const enhancedApi = {
   postWithRetry: (url: string, data?: any, config?: any) => withRetry(() => api.post(url, data, config)),
   putWithRetry: (url: string, data?: any, config?: any) => withRetry(() => api.put(url, data, config)),
   patchWithRetry: (url: string, data?: any, config?: any) => withRetry(() => api.patch(url, data, config)),
-  deleteWithRetry: (url: string, config?: any) => withRetry(() => api.delete(url, config))
+  deleteWithRetry: (url: string, config?: any) => withRetry(() => api.delete(url, config)),
+  // Graceful optional resource fetch: returns null instead of throwing for endpoints meant to be optional
+  getOptional: async (url: string, config?: any) => {
+    try {
+      const res = await api.get(url, config);
+      return res.data;
+    } catch (e: any) {
+      const status = e?.response?.status;
+      if (status === 404) return null; // Fallback if other endpoints still return 404
+      throw e;
+    }
+  }
 };
 
 export default enhancedApi;
