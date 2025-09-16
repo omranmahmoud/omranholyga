@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { apiBase } from './apiBase';
 import { toast } from 'react-hot-toast';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: apiBase,
   headers: {
     'Content-Type': 'application/json'
   },
