@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Exclude embedded React Native example apps (were previously added as gitlinks)
+mobile/TestApp/
+mobile/mobile-app/
