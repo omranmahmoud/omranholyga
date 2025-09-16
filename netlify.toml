@@ -1,0 +1,36 @@
+# Root Netlify config referencing app in ./project
+# Fixes build path so Netlify runs inside project/ where package.json lives.
+
+[build]
+  base = "project"          # Change working directory before running command
+  publish = "project/dist"   # Dist output relative to repo root
+  command = "npm run build"  # Uses scripts from project/package.json
+
+# Environment (optional examples)
+#[[build.environment]]
+#  NODE_VERSION = "18"
+
+# API proxy must precede SPA fallbacks
+[[redirects]]
+  from = "/api/*"
+  to = "https://omraneva.onrender.com/api/:splat"
+  status = 200
+  force = true
+  headers = { X-Forwarded-Host = "netlify" }
+
+# Mobile variant SPA fallback
+[[redirects]]
+  from = "/m/*"
+  to = "/m/index.html"
+  status = 200
+
+# Desktop SPA fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[edge_functions]
+  directory = "project/netlify/edge-functions"
+
+# (Optional) Future: Add function for prefs, A/B, etc.
