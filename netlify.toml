@@ -11,6 +11,9 @@
   NPM_VERSION = "10"
   NPM_FLAGS = "--no-audit --no-fund"
 
+[edge_functions]
+  directory = "edge-functions"
+
 # Environment (optional examples)
 #[[build.environment]]
 #  NODE_VERSION = "18"
@@ -36,7 +39,7 @@
   status = 200
 
 [[edge_functions]]
-  path = "/"                   # Run for all requests (mobile redirect logic checks UA & path)
-  function = "mobile-redirect"  # File: project/netlify/edge-functions/mobile-redirect.js
+  path = "/*"                  # Run for all requests (mobile redirect logic checks UA & path)
+  function = "mobile-redirect"  # File: edge-functions/mobile-redirect.js
 
 # (Optional) Future: Add function for prefs, A/B, etc.

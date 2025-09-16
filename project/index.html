@@ -8,6 +8,27 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function() {
+        try {
+          var path = window.location.pathname;
+          if (path.startsWith('/m')) return; // already mobile variant
+          if (/\\.(?:js|css|png|jpg|svg|webp|gif|ico)$/i.test(path)) return; // asset
+          // Respect preference cookie
+          if (document.cookie.indexOf('preferDesktop=1') !== -1) return;
+          var ua = navigator.userAgent.toLowerCase();
+            if (/(iphone|ipad|ipod|android|blackberry|bb10|opera mini|windows phone|mobile|silk)/.test(ua)) {
+            // Avoid double redirect if edge function already handled (heuristic: location hash marker set)
+            if (!sessionStorage.getItem('edgeRedirected')) {
+              // Mark so we don't loop if some proxy rewrites
+              sessionStorage.setItem('edgeRedirected','1');
+              var target = '/m' + (path === '/' ? '' : path);
+              window.location.replace(target + window.location.search + window.location.hash);
+            }
+          }
+        } catch (e) { /* silent */ }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
