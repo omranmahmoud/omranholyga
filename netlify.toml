@@ -6,6 +6,10 @@
   publish = "dist"          # Because base moves us into project/, publish path is relative to that
   command = "npm run build"  # Uses scripts from project/package.json
 
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_VERSION = "10"
+
 # Environment (optional examples)
 #[[build.environment]]
 #  NODE_VERSION = "18"
